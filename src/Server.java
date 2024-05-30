@@ -10,7 +10,6 @@ import java.util.concurrent.Executors;
 
 public class Server implements Runnable {
 
-
     private final ArrayList<ConnectionHandler> connections;
     private ServerSocket server;
     private boolean done;
@@ -32,16 +31,23 @@ public class Server implements Runnable {
                 connections.add(handler);
                 pool.execute(handler);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             shutdown();
         }
     }
 
-    public void broadcast(String message) {
+    public synchronized void broadcast(String message) {
         for (ConnectionHandler ch : connections) {
             if (ch != null) {
                 ch.sendMessage(message);
             }
+        }
+    }
+
+    public synchronized void removeConnection(ConnectionHandler handler) {
+        connections.remove(handler);
+        if (connections.isEmpty()) {
+            shutdown();
         }
     }
 
@@ -58,7 +64,6 @@ public class Server implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     class ConnectionHandler implements Runnable {
@@ -66,10 +71,10 @@ public class Server implements Runnable {
         private final Socket client;
         private BufferedReader in;
         private PrintWriter out;
+        private String nickname;
 
         public ConnectionHandler(Socket client) {
             this.client = client;
-
         }
 
         @Override
@@ -78,7 +83,7 @@ public class Server implements Runnable {
                 out = new PrintWriter(client.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 out.println("Please enter a nickname: ");
-                String nickname = in.readLine();
+                nickname = in.readLine();
                 System.out.println(nickname + " connected!");
                 broadcast(nickname + " joined the chat!");
                 String message;
@@ -102,6 +107,8 @@ public class Server implements Runnable {
                 }
             } catch (IOException e) {
                 shutdown();
+            } finally {
+                removeConnection(this);
             }
         }
 
@@ -110,25 +117,20 @@ public class Server implements Runnable {
         }
 
         public void shutdown() {
-           try{
-               in.close();
-
-            out.close();
-            if(!client.isClosed()){
-                client.close();
+            try {
+                in.close();
+                out.close();
+                if (!client.isClosed()) {
+                    client.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-           }catch (IOException e){
-               e.printStackTrace();
-           }
         }
-
     }
 
     public static void main(String[] args) {
         Server server = new Server();
         server.run();
     }
-
-
 }
