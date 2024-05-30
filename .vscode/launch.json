@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Client",
+            "request": "launch",
+            "mainClass": "Client",
+            "projectName": "Chat_room_8055418c"
+        },
+        {
+            "type": "java",
+            "name": "Server",
+            "request": "launch",
+            "mainClass": "Server",
+            "projectName": "Chat_room_8055418c"
+        },
+        {
+            "type": "lldb",
+            "request": "custom",
+            "name": "Custom launch",
+            "targetCreateCommands": [
+                "target create ${workspaceFolder}/<program>"
+            ],
+            "processCreateCommands": [
+                "settings set target.run-args value1 value2 value3",
+                "process launch"
+            ]
+        }
+    ]
+}
