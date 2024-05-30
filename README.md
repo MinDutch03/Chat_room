@@ -1,35 +1,34 @@
 # Simple Chat Application
 
-This repository contains a straightforward Java-based chat application using the TCP protocol, consisting of a server and a client.
+Contained within this repository is a simple chat application implemented in Java, utilizing the TCP protocol. The application comprises a server and a client component.
 
 ## Server :computer:
-The server is responsible for handling incoming client connections and facilitating communication between clients. It allows clients to send messages, change their nicknames, and gracefully quit the chat. The server is a multithreaded application, capable of handling multiple client connections simultaneously.
+The server manages incoming client connections and facilitates communication between them. It supports message exchange, nickname customization, and graceful chat exits. Implemented as a multithreaded system, it efficiently handles concurrent client connections.
 
 ### How to Run the Server :gear:
 Follow these steps to run the server:
 
 * Run the `Server.java` file.
 
+To initiate the server, execute the Server.java file.
 
-The server will start listening on port 1234 for incoming client connections.
+The server initializes and begins listening for client connections on port 1234.
 
 ## Client :
-The client is a command-line application that connects to the server, enabling users to send and receive messages in a chat room. Clients can also change their nicknames and quit the chat gracefully.
+The client interface is command-line based and connects to the server, enabling users to participate in chat interactions. Users can exchange messages, modify their nicknames, and exit the chat seamlessly.
 
 ### How to Run the Client :gear:
-Follow these steps to run the client:
+To launch the client, execute the Client.java file.
 
-* Run the `Client.java` file.
-
-The client will connect to the server running on `127.0.0.1` (localhost) on port 1234 by default. You can change the server address in the `Client` class if needed.
+By default, the client connects to the server hosted on 127.0.0.1 (localhost) at port 1234. Adjustments to the server address can be made within the Client class if necessary.
 
 ## Usage :bulb:
-- When a client connects, they will be prompted to enter a nickname.
-- Clients can send messages to the chat by typing their messages and pressing Enter.
-- To change their nickname, clients can use the "/change_nick" command followed by the desired nickname (e.g., "/change_nick <NewNickname>").
-- If one client says "bye", he/she left the chat. After all clients left the chat, the server stops immediately.
+- Upon connecting, clients are prompted to set a nickname.
+- Messages can be sent by typing and pressing Enter.
+- Nicknames can be changed using the "/change_nick" command followed by the desired name (e.g., "/change_nick <NewNickname>").
+- When a client types "bye", they exit the chat. Once all clients have left, the server terminates automatically.
 
 ## Features :rocket:
-- Multithreaded server that can handle multiple client connections simultaneously.
-- Ability for clients to change their nicknames to distinguish themselves in the chat.
-- Graceful handling of client disconnections.
+- The server supports concurrent connections from multiple clients through multithreading.
+- Clients can personalize their identities by modifying their nicknames.
+- Client disconnections are handled gracefully to maintain chat stability.
