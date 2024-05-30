@@ -27,7 +27,7 @@ The client will connect to the server running on `127.0.0.1` (localhost) on port
 - When a client connects, they will be prompted to enter a nickname.
 - Clients can send messages to the chat by typing their messages and pressing Enter.
 - To change their nickname, clients can use the "/change_nick" command followed by the desired nickname (e.g., "/change_nick <NewNickname>").
-- To quit the chat, clients can use the "/quit" command.
+- If one client says "bye", he/she left the chat. After all clients left the chat, the server stops immediately.
 
 ## Features :rocket:
 - Multithreaded server that can handle multiple client connections simultaneously.
