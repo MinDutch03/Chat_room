@@ -26,7 +26,7 @@ The client will connect to the server running on `127.0.0.1` (localhost) on port
 ## Usage :bulb:
 - When a client connects, they will be prompted to enter a nickname.
 - Clients can send messages to the chat by typing their messages and pressing Enter.
-- To change their nickname, clients can use the "/nick" command followed by the desired nickname (e.g., "/nick NewNickname").
+- To change their nickname, clients can use the "/change_nick" command followed by the desired nickname (e.g., "/change_nick <NewNickname>").
 - To quit the chat, clients can use the "/quit" command.
 
 ## Features :rocket:
