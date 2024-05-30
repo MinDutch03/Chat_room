@@ -21,7 +21,7 @@ Follow these steps to run the client:
 
 * Run the `Client.java` file.
 
-The client will connect to the server running on `127.0.0.1` (localhost) on port 9999 by default. You can change the server address in the `Client` class if needed.
+The client will connect to the server running on `127.0.0.1` (localhost) on port 1234 by default. You can change the server address in the `Client` class if needed.
 
 ## Usage :bulb:
 - When a client connects, they will be prompted to enter a nickname.
