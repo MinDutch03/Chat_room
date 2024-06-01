@@ -27,6 +27,7 @@ public class Server implements Runnable {
             pool = Executors.newCachedThreadPool();
             while (!done) {
                 Socket client = server.accept();
+
                 ConnectionHandler handler = new ConnectionHandler(client);
                 connections.add(handler);
                 pool.execute(handler);
